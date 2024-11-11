@@ -1,0 +1,30 @@
+--- datasets:
+    - self.data
+    - self.target
+    - self.feature_names
+
+--- regressão linear:
+    - ? inicialização de parâmetros
+    - método `fit` para treinamento
+    - método `predict` para previsões
+
+base para inspiração # regressao_linear.py
+
+import numpy as np
+
+class RegressaoLinear:
+    def __init__(self):
+        self.coef_ = None  # Coeficientes
+        self.intercept_ = None  # Intercepto
+
+    def fit(self, X, y, learning_rate=0.01, epochs=1000):
+        # Implementação do treinamento com gradiente descendente ou método dos mínimos quadrados
+        pass
+
+    def predict(self, X):
+        # Realizar previsões com base nos coeficientes ajustados
+        pass
+
+    def score(self, X, y):
+        # Calcular a precisão (ex.: R^2)
+        pass
