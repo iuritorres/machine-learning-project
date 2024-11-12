@@ -15,25 +15,22 @@ class DatasetIris:
         self.target = []
 
         self.feature_names = []
-        self.target_names = ["setosa", "versicolor", "virginica"]
+        self.target_names = []
 
         self.__load_dataset()
 
-    def __load_dataset(self):
+    def __load_dataset(self) -> None:
         """Load the iris dataset"""
 
         csv_path = f"{Path(__file__).parent}\\iris_dataset.csv"
-
         df = pd.read_csv(csv_path)
-        df["target"] = df["target"].str.slice(5)
-        df["target"] = df.apply(
-            lambda row: self.target_names.index(row["target"]), axis=1
-        )
 
+        df["target"] = df["target"].str.slice(5)
+
+        self.target_names = df["target"].unique().tolist()
         self.feature_names = df.columns[:-1]
         self.data = df.iloc[:, :-1].values
-
-        self.target = df["target"].values
+        self.target = df["target"].map(self.target_names.index)
 
     def get_class_name(self, target_value: int) -> str:
         """Get the class name for a given target value"""
